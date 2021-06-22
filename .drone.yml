@@ -4,7 +4,9 @@ type: docker
 
 steps:
 - name: test
-  image: markusgoetz/heat
+  image: dhna/mpi4py
   commands:
+  - pip install pytest
+  - cd heat
+  - pip install .[hdf5,netcdf]
   - mpirun -n 1 pytest heat/
-  - mpirun -n 2 pytest heat/
