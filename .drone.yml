@@ -6,7 +6,7 @@ steps:
 - name: test
   image: python:3
   commands:
-  - apt-get install mpich
+  - apt-get update && install mpich
   - pip install pytest
   - pip install .
   - mpirun -n 1 pytest heat/
