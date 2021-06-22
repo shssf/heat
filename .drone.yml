@@ -6,10 +6,24 @@ steps:
 - name: test
   image: dhna/mpi4py
   commands:
-  - pip install -U numpy pytest
-  - pip install .
-  - mpirun -n 1 pytest heat/
-  - mpirun -n 2 pytest heat/
-  - mpirun -n 3 pytest heat/
-  - mpirun -n 4 pytest heat/
-  - mpirun -n 7 pytest heat/
+    - pip install -U numpy pytest coverage
+    - pip install .
+    - mpirun -n 1 coverage run --source=heat --parallel-mode -m pytest heat/
+    - mpirun -n 2 coverage run --source=heat --parallel-mode -m pytest heat/
+    - mpirun -n 3 coverage run --source=heat --parallel-mode -m pytest heat/
+    - mpirun -n 4 coverage run --source=heat --parallel-mode -m pytest heat/
+    - mpirun -n 5 coverage run --source=heat --parallel-mode -m pytest heat/
+    - mpirun -n 6 coverage run --source=heat --parallel-mode -m pytest heat/
+  when:
+    branch: master
+    event:
+      include:
+        - push
+        - pull_request
+
+- name: coverage
+  image: plugins/codecov
+  settings:
+    token: your-codecov-token
+    files:
+     - *.xml
