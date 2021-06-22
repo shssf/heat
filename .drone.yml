@@ -29,4 +29,6 @@ steps:
     token: 
       from_secret: token
     files:
-     - *.xml
+      - *.xml
+    flags:
+      - drone
