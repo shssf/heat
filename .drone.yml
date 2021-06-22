@@ -4,6 +4,7 @@ type: docker
 
 steps:
 - name: test
-  image: alpine
+  image: markusgoetz/heat
   commands:
-  - echo "It worked!!"
+  - mpirun -n 1 pytest heat/
+  - mpirun -n 2 pytest heat/
