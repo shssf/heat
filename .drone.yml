@@ -4,8 +4,9 @@ type: docker
 
 steps:
 - name: test
-  image: dhna/mpi4py
+  image: python:3
   commands:
+  - apt-get install mpich
   - pip install pytest
-  - pip install .[hdf5,netcdf]
+  - pip install .
   - mpirun -n 1 pytest heat/
