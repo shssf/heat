@@ -4,9 +4,8 @@ type: docker
 
 steps:
 - name: test
-  image: python:3
+  image: dhna/mpi4py
   commands:
-  - apt-get update && install mpich
-  - pip install pytest
+  - pip install -U numpy pytest
   - pip install .
   - mpirun -n 1 pytest heat/
