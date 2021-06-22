@@ -26,9 +26,8 @@ steps:
 - name: coverage
   image: plugins/codecov
   settings:
-    token: 
+    token:
       from_secret: token
+    flags: drone
     files:
       - *.xml
-    flags:
-      - drone
