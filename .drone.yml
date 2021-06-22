@@ -9,3 +9,7 @@ steps:
   - pip install -U numpy pytest
   - pip install .
   - mpirun -n 1 pytest heat/
+  - mpirun -n 2 pytest heat/
+  - mpirun -n 3 pytest heat/
+  - mpirun -n 4 pytest heat/
+  - mpirun -n 7 pytest heat/
