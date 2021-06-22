@@ -16,17 +16,17 @@ steps:
     - mpirun -n 6 coverage run --source=heat --parallel-mode -m pytest heat/
     - coverage combine
     - coverage xml
-  when:
-    branch: master
-    event:
-      include:
-        - push
-        - pull_request
+#  when:
+#    branch: master
+#    event:
+#      include:
+#        - push
+#        - pull_request
 
 - name: coverage
   image: plugins/codecov
   settings:
     token: 
-      from_secret: codecov-token
+      from_secret: token
     files:
      - *.xml
