@@ -7,6 +7,5 @@ steps:
   image: dhna/mpi4py
   commands:
   - pip install pytest
-  - cd heat
   - pip install .[hdf5,netcdf]
   - mpirun -n 1 pytest heat/
