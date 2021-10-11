@@ -55,11 +55,11 @@ def sanitize_memory_layout(x: torch.Tensor, order: str = "C") -> torch.Tensor:
         raise NotImplementedError(
             "Internal usage of torch.clone() means losing original memory layout for now. \n Please specify order='C' for row-major, order='F' for column-major layout."
         )
-    if x.ndim < 2 or x.numel() == 0:
+    if x.ndim < 2 or x.size == 0:
         # do nothing
         return x
     dims = list(range(x.ndim))
-    stride = torch.tensor(x.stride())
+    stride = torch.tensor(x.strides)
     # since strides can get a bit wonky with operations like transpose
     #   we should assume that the tensors are row major or are distributed the default way
     sdiff = stride[1:] - stride[:-1]

@@ -713,7 +713,13 @@ def __factory(
     _, local_shape, _ = comm.chunk(shape, split)
 
     # create the torch data using the factory function
-    data = local_factory(local_shape, dtype=dtype.torch_type(), device=device.torch_device)
+    print(f"__factory(): local_factory={local_factory}")
+    print(f"__factory(): device.torch_device={device.torch_device}")
+    print(f"__factory(): type(device.torch_device)={type(device.torch_device)}")
+    print(f"__factory(): dtype.torch_type()={dtype.torch_type()}")
+    print(f"__factory(): type(dtype.torch_type())={type(dtype.torch_type())}")
+    # data = local_factory(local_shape, dtype=dtype.torch_type(), device=device.torch_device)
+    data = local_factory(local_shape, dtype=dtype.char())
     data = sanitize_memory_layout(data, order=order)
 
     return DNDarray(data, shape, dtype, split, device, comm, balanced=True)
@@ -1270,8 +1276,9 @@ def zeros(
     DNDarray([[0., 0., 0.],
               [0., 0., 0.]], dtype=ht.float32, device=cpu:0, split=None)
     """
+    print(f"\ndef zeroes()\n")
     # TODO: implement 'K' option when torch.clone() fix to preserve memory layout is released.
-    return __factory(shape, dtype, split, torch.zeros, device, comm, order=order)
+    return __factory(shape, dtype, split, np.zeros, device, comm, order=order)
 
 
 def zeros_like(
