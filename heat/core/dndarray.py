@@ -83,7 +83,7 @@ class DNDarray:
         self.__lshape_map = None
 
         # check for inconsistencies between torch and heat devices
-        assert str(array.device) == device.torch_device
+        # assert str(array.device) == device.torch_device
 
     @property
     def balanced(self) -> bool:
